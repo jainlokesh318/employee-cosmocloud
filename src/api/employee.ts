@@ -8,3 +8,13 @@ export const fetchEmployees = async () => {
         throw err;
     }
 };
+
+export const deleteEmployee = async (id:string) => {
+    const payload = {};
+    try{
+        const res = await api.delete(`/employee/${id}`, {data: payload})
+        return res.data;
+    }catch(err){
+        throw err;
+    }
+};
