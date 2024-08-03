@@ -18,3 +18,12 @@ export const deleteEmployee = async (id:string) => {
         throw err;
     }
 };
+
+export const fetchEmployee = async (id:string) => {
+    try{
+        const res = await api.get(`/employee/${id}`)
+        return res.data;
+    }catch(err){
+        throw err;
+    }
+};

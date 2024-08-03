@@ -13,6 +13,6 @@ type Contact = {
 export type Employee = {
   _id: string
   name: string
-  address: Address[]
+  address: Address
   contactMethods: Contact[]
 }
