@@ -21,7 +21,8 @@ export default function EmployeeList() {
     }
 
     return (
-        <div className="relative overflow-x-auto">
+        <div className="flex flex-col gap-4">
+            <h1 className='text-2xl uppercase'>Employee List</h1>
             <table className="w-full text-sm text-left rtl:text-right hover:text-white text-gray-500 dark:text-gray-400">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
