@@ -1,21 +1,13 @@
-import { useEffect, useState } from "react";
-import { Employee } from "../models/employee";
+import { useEffect } from "react";
 import Loader from "./ui/Loader";
-import { fetchEmployees } from "../api/employee";
+import { PencilIcon, TrashIcon } from "@heroicons/react/16/solid";
+import { useEmployee } from "../hooks/useEmployee";
 
 export default function EmployeeList() {
-    const [employees, setEmployees] = useState<Employee[]>([])
-    const [loading, setLoading] = useState(false)
-
-    const setEmployeesData = async () => {
-        setLoading(true);
-        const res = await fetchEmployees();
-        setEmployees(res.data)
-        setLoading(false);
-    }
+    const {fetchEmployeesData, employees, loading, deleteEmployeeData} = useEmployee()
 
     useEffect(() => {
-        setEmployeesData();
+        fetchEmployeesData();
     }, [])
 
     if (loading) {
@@ -44,15 +36,16 @@ export default function EmployeeList() {
                     {
                         employees.map(employee => {
                             return (
-                                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 cursor-pointer">
+                                <tr key={employee._id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 cursor-pointer">
                                     <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         {employee.name}
                                     </th>
                                     <td className="px-6 py-4">
                                         {employee._id}
                                     </td>
-                                    <td className="px-6 py-4">
-                                        <input type="checkbox" onClick={e => console.log(e)} />
+                                    <td className="flex gap-2 px-6 py-4">
+                                        <PencilIcon className="size-5 hover:text-gray-200" />
+                                        <TrashIcon className="size-5 text-red-300 hover:text-red-500" onClick={() => deleteEmployeeData(employee._id)}/>
                                     </td>
                                 </tr>)
                         }
