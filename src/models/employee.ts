@@ -1,12 +1,14 @@
-type Address = {
+export type Address = {
     line1: string
     country: string
     city:string
     zipcode: string
 }
 
-type Contact = {
-    contact_method: 'email' | 'phone',
+export type ContactMethod = 'email' | 'phone'
+
+export type Contact = {
+    contact_method: ContactMethod,
     value: string
 }
 

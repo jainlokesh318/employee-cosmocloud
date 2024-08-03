@@ -1,4 +1,4 @@
-export function getFirstTwoCharacters(input) {
+export function getFirstTwoCharacters(input:string) {
     // Split the input string by spaces
     const words = input.trim().split(/\s+/);
   
