@@ -10,6 +10,15 @@ export const fetchEmployees = async () => {
     }
 };
 
+export const fetchEmployee = async (id: string) => {
+    try {
+        const res = await api.get(`/employee/${id}`)
+        return res.data;
+    } catch (err) {
+        throw err;
+    }
+};
+
 export const deleteEmployee = async (id: string) => {
     const payload = {};
     try {
@@ -20,14 +29,6 @@ export const deleteEmployee = async (id: string) => {
     }
 };
 
-export const fetchEmployee = async (id: string) => {
-    try {
-        const res = await api.get(`/employee/${id}`)
-        return res.data;
-    } catch (err) {
-        throw err;
-    }
-};
 
 export const addEmployee = async (newEmployee: Omit<Employee, '_id'>) => {
     try {
