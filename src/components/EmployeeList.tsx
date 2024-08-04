@@ -21,16 +21,15 @@ export default function EmployeeList() {
     }
 
     return (
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 text-sm">
             <div className="flex justify-between">
                 <h1 className='text-2xl uppercase'>Employee List</h1>
                 <button className="border flex items-center p-2 rounded-lg gap-2" onClick={() => navigate('/employee/add')}>
                     <PlusIcon className="size-5" />
                     <span>Add New Employee</span>
                 </button>
-
             </div>
-            <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <table className="w-full text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" className="px-6 py-3">
