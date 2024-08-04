@@ -29,8 +29,8 @@ export default function EmployeeList() {
                     <span>Add New Employee</span>
                 </button>
             </div>
-            <table className="w-full text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <table className="w-full text-left rtl:text-right text-gray-500 dark:text-gray-400 shadow-lg">
+                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-800 dark:text-gray-400">
                     <tr>
                         <th scope="col" className="px-6 py-3">
                             Name
@@ -45,7 +45,7 @@ export default function EmployeeList() {
                     {
                         employees.map(({ _id, name }) => {
                             return (
-                                <tr key={_id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:text-white cursor-pointer" onClick={() => navigate(`/employee/${_id}`)}>
+                                <tr key={_id} className="bg-white border-b dark:bg-gray-900 dark:border-gray-700 hover:text-white cursor-pointer" onClick={() => navigate(`/employee/${_id}`)}>
                                     <th scope="row" className="px-6 py-4 font-medium whitespace-nowrap">
                                         {name}
                                     </th>
@@ -57,7 +57,10 @@ export default function EmployeeList() {
                                             e.stopPropagation();
                                             navigate(`/employee/edit/${_id}`)
                                         }} />
-                                        <TrashIcon className="size-5 text-red-300 hover:text-red-500" onClick={() => deleteEmployeeData(_id)} />
+                                        <TrashIcon className="size-5 text-red-300 hover:text-red-500" onClick={(e) => {
+                                            e.stopPropagation();
+                                            deleteEmployeeData(_id)
+                                        }} />
                                     </td>
                                 </tr>)
                         }
@@ -66,6 +69,6 @@ export default function EmployeeList() {
                 </tbody>
             </table>
         </div>
-      
+
     )
 }
