@@ -2,7 +2,7 @@ import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Contact, Employee } from '../models/employee';
 import { useEmployee } from '../hooks/useEmployee';
-import { PlusCircleIcon } from '@heroicons/react/16/solid';
+import { ArrowLeftIcon, PlusCircleIcon } from '@heroicons/react/16/solid';
 
 const AddEmployee: React.FC = () => {
   const [name, setName] = useState<string>('');
@@ -66,7 +66,12 @@ const AddEmployee: React.FC = () => {
 
   return (
     <div>
-      <div className='bg-gray-50 dark:bg-gray-700 p-4 rounded-t-lg'> Employee Details Form </div>
+      <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-t-lg flex justify-between items-center">
+        <ArrowLeftIcon className="size-5 cursor-pointer" onClick={() => navigate('/')}/>
+        <div className="flex-grow text-center">
+          <span>Employee Details Form</span>
+        </div>
+      </div>
       <form onSubmit={handleSubmit} className="space-y-4 text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 p-4 shadow-lg text-sm rounded-b-lg">
         <div className='flex flex-col gap-2'>
           <label className="text-left">Name</label>

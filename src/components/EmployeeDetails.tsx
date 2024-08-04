@@ -5,7 +5,7 @@ import { useEmployee } from "../hooks/useEmployee";
 import { useNavigate, useParams } from "react-router-dom";
 import { Employee } from "../models/employee";
 import { getFirstTwoCharacters } from "../utils/HelperFunctions"
-import { MapPinIcon } from "@heroicons/react/16/solid";
+import { ArrowLeftIcon, MapPinIcon } from "@heroicons/react/16/solid";
 
 export default function EmployeeDetails() {
     const [employee, setEmployee] = useState<Employee>()
@@ -23,14 +23,14 @@ export default function EmployeeDetails() {
     }
 
     const handleDelete = async () => {
-        if(employee){
+        if (employee) {
             await deleteEmployeeData(employee._id)
             navigate('/');
         }
     }
 
     const navigateToEdit = () => {
-        if(employee){
+        if (employee) {
             navigate(`/employee/edit/${employee._id}`)
         }
     }
@@ -46,8 +46,11 @@ export default function EmployeeDetails() {
     if (employee) {
         return (
             <div id="card" className="flex flex-col bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden text-gray-300">
-                <div className="bg-gray-50 dark:bg-gray-700 p-4 text-white uppercase">
-                    Employee Details
+                <div className="bg-gray-50 dark:bg-gray-700 p-4 text-white uppercase flex justify-between items-center">
+                    <ArrowLeftIcon className="size-5 cursor-pointer" onClick={() => navigate('/')} />
+                    <div className="flex-grow text-center">
+                        <span>Employee Details</span>
+                    </div>
                 </div>
                 <div className="p-6 flex justify-between">
                     <div className="flex">
