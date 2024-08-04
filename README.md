@@ -25,3 +25,15 @@ Ensure you have the following installed:
    git clone https://github.com/jainlokesh318/employee-cosmocloud.git
    cd employee-cosmocloud
    ```
+2. **Install dependencies:**
+
+   ```sh
+   npm install
+   ```
+3. **Set up environment variables:**
+  Create a .env file in the root directory of your project and fill it with your specific values as shown below:
+   ```sh
+   VITE_COSMOCLOUD_ENDPOINT=http://your-cosmocloud-api-endpoint
+   VITE_COSMOCLOUD_PROJECTID=your_cosmocloud_projectId
+   VITE_COSMOCLOUD_ENVIRONMENTID=your_cosmocloud_environmentId
+   ```
