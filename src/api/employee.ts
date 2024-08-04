@@ -1,9 +1,9 @@
 import { Employee } from "../models/employee";
 import api from "./axios";
 
-export const fetchEmployees = async () => {
+export const fetchEmployees = async (offset:number) => {
     try {
-        const res = await api.get(`/employee?offset=0&limit=5`)
+        const res = await api.get(`/employee?offset=${offset}&limit=5`)
         return res.data;
     } catch (err) {
         throw err;
