@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Employee } from "../models/employee"
-import { addEmployee, deleteEmployee, fetchEmployee, fetchEmployees } from "../api/employee"
+import { addEmployee, deleteEmployee, editEmployee, fetchEmployee, fetchEmployees } from "../api/employee"
 
 export function useEmployee() {
     const [employees, setEmployees] = useState<Employee[]>([])
@@ -56,5 +56,18 @@ export function useEmployee() {
         }
     }
 
-    return { fetchEmployeesData, deleteEmployeeData, employees, loading, fetchEmployeeData, addEmployeeData }
+    const editEmployeeData = async (id: string, updatedEmployee: Omit<Employee, '_id'>) => {
+        try{
+            setLoading(true);
+            const res = await editEmployee(id, updatedEmployee);
+            setLoading(false);
+            return res;
+        }catch(err){
+            setLoading(false);
+            //TODO:- Add toast for the message
+            console.log(err)
+        }
+    }
+
+    return { fetchEmployeesData, deleteEmployeeData, employees, loading, fetchEmployeeData, addEmployeeData, editEmployeeData}
 }

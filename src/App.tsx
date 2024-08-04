@@ -10,7 +10,8 @@ function App() {
       <Routes>
         <Route path="/" element={<EmployeeList />} />
         <Route path="/employee/:id" element={<EmployeeDetails />} />
-        <Route path="/add-employee" element={<AddEmployee />} />
+        <Route path="/employee/add" element={<AddEmployee />} />
+        <Route path="/employee/edit/:id" element={<AddEmployee />} />
         {/* <Route path="*" element={<NotFound />} /> */}
       </Routes>
     </Router>

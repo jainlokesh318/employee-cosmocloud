@@ -1,5 +1,5 @@
-import React, { useState, ChangeEvent, FormEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Contact, Employee } from '../models/employee';
 import { useEmployee } from '../hooks/useEmployee';
 
@@ -10,8 +10,19 @@ const AddEmployee: React.FC = () => {
   const [country, setCountry] = useState<string>('');
   const [zipcode, setZipcode] = useState<string>('');
   const [contactMethods, setContactMethods] = useState<Contact[]>([{ contact_method: 'email', value: '' }]);
-  const{loading, addEmployeeData} =useEmployee();
+  const{ loading, addEmployeeData, fetchEmployeeData, editEmployeeData } = useEmployee();
   const navigate = useNavigate();
+  const {id} = useParams();
+
+  const setEmployeeData = async (id:string) => {
+    const res = await fetchEmployeeData(id);
+    setName(res.name);
+    setContactMethods(res.contactMethods)
+    setCity(res.address.city)
+    setCountry(res.address.country)
+    setZipcode(res.address.zipcode)
+    setLine1(res.address.line1)
+  }
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -21,8 +32,14 @@ const AddEmployee: React.FC = () => {
       contactMethods,
     };
 
-    const res = await addEmployeeData(newEmployee)
-    navigate(`/employee/${res.id}`)
+    if(id){
+        await editEmployeeData(id, newEmployee)
+        navigate(`/employee/${id}`)
+    }else{
+        const res = await addEmployeeData(newEmployee)
+        navigate(`/employee/${res.id}`)
+    }
+   
   };
 
   const handleContactChange = (index: number, field: keyof Contact, value: string) => {
@@ -39,6 +56,12 @@ const AddEmployee: React.FC = () => {
   const handleAddContact = () => {
     setContactMethods([...contactMethods, { contact_method: 'email', value: '' }]);
   };
+
+  useEffect(() => {
+    if(id){
+        setEmployeeData(id)
+    }
+  }, [id])
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">

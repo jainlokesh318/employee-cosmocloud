@@ -38,3 +38,12 @@ export const addEmployee = async (newEmployee: Omit<Employee, '_id'>) => {
         throw err;
     }
 };
+
+export const editEmployee = async (id: string, updatedEmployee: Omit<Employee, '_id'>) => {
+    try {
+        const res = await api.patch(`/employee/${id}`, updatedEmployee)
+        return res.data;
+    } catch (err) {
+        throw err;
+    }
+};

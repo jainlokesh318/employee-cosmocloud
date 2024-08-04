@@ -29,6 +29,12 @@ export default function EmployeeDetails() {
         }
     }
 
+    const navigateToEdit = () => {
+        if(employee){
+            navigate(`/employee/edit/${employee._id}`)
+        }
+    }
+
     useEffect(() => {
         fetchData();
     }, [])
@@ -64,7 +70,7 @@ export default function EmployeeDetails() {
                     }
                 </div>
                 <div className="px-6 py-4 border-t border-gray-700 flex justify-between">
-                    <button type="button" className="focus:outline-none rounded-lg text-sm px-5 py-2.5 me-2 mb-2 border">Edit Details</button>
+                    <button type="button" className="focus:outline-none rounded-lg text-sm px-5 py-2.5 me-2 mb-2 border" onClick={navigateToEdit}>Edit Details</button>
                     <button type="button" className="focus:outline-none text-white bg-red-700 hover:bg-red-800 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700" onClick={handleDelete}>Delete</button>
                 </div>
             </div>
