@@ -45,8 +45,11 @@ export default function EmployeeDetails() {
 
     if (employee) {
         return (
-            <div id="card" className="flex flex-col bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
-                <div className="bg-gray-50 dark:bg-gray-700 px-6 py-4 flex justify-between">
+            <div id="card" className="flex flex-col bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden text-gray-300">
+                <div className="bg-gray-50 dark:bg-gray-700 p-4 text-white uppercase">
+                    Employee Details
+                </div>
+                <div className="p-6 flex justify-between">
                     <div className="flex">
                         <div className="flex justify-center items-center dark:bg-stone-800 rounded-full h-12 w-12 uppercase font-bold text-gray-300">{getFirstTwoCharacters(employee.name)}</div>
                         <div className="ml-4">
@@ -59,11 +62,14 @@ export default function EmployeeDetails() {
                         <div className="w-40"> {[employee.address.line1, employee.address.city, employee.address.country, employee.address.zipcode].join(', ')}</div>
                     </div>
                 </div>
-                <div className="flex px-6 py-4 justify-between items-center">
+                <div className="border-y border-gray-700 p-2">
+                    Contact
+                </div>
+                <div className="p-6 grid grid-cols-2">
                     {
                         employee.contactMethods.map((contactMethod) => {
-                            return <div key={contactMethod.contact_method} className="flex gap-4 items-center">
-                                <div>{contactMethod.contact_method} :</div>
+                            return <div key={contactMethod.contact_method} className="flex m-1 gap-4 items-center">
+                                <div className="capitalize">{contactMethod.contact_method} :</div>
                                 <span>{contactMethod.value}</span>
                             </div>
                         })
